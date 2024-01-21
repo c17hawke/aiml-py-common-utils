@@ -6,4 +6,5 @@ tqdm
 python-dotenv
 pip-chill
 loguru==0.7.2
+python-box==7.1.1
 -e .
