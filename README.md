@@ -111,8 +111,8 @@ example_dict = example_dict = {
   "boolean": True,
   "null_value": None,
 }
-path_to_json = Path("path/to/example.bin")
-save_bin(data=example_dict, path=path_to_json)
+path_to_bin = Path("path/to/example.bin")
+save_bin(data=example_dict, path=path_to_bin)
 ```
 
 ### 6. Load a binary file 
@@ -123,8 +123,20 @@ You can Load the snapshot of a data saved above using this function later on
 from pathlib import Path
 from aiml_py_common_utils import load_bin
 
-path_to_json = Path("path/to/example.bin")
+path_to_bin = Path("path/to/example.bin")
 
-loaded_bin_content = load_bin(path=path_to_json)
+loaded_bin_content = load_bin(path=path_to_bin)
 ```
 
+### 7. Get size of a file in KBs
+
+To get the size of a file in `KiloBytes` you can use the following function
+
+```python
+from pathlib import Path
+from aiml_py_common_utils import get_size
+
+filepath = Path("path/to/example.file")
+
+size_in_kb = get_size(path=filepath)
+```
