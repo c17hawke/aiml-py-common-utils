@@ -30,10 +30,9 @@ GITHUB_USER_NAME=<GITHUB_USER_NAME>
 AUTHOR_NAME=<AUTHOR_NAME>
 PACKAGE_NAME=<PACKAGE_NAME>
 AUTHOR_EMAIL=<AUTHOR_EMAIL>
-COMMAND_NAME=${PACKAGE_NAME} # update as per your need, Here it is assumed that command name is package name
 LICENCSE_NAME="MIT" # update as per your need, Here it is assumed that you choose MIT LICENSE
-PYTHON_VERSION=3.8 # update as per your need, Here it is assumed that you choose version 3.8
-YEAR=2023 # update as per your need
+PYTHON_VERSION=3.9 # update as per your need, Here it is assumed that you choose version 3.8
+YEAR=2024 # update as per your need
 ```
 
 > **WARNING: if this step is skipped then exception will be raised**
