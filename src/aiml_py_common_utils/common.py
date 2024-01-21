@@ -45,8 +45,8 @@ def create_directories(path_to_directories: List[Path], verbose: bool=True):
             logger.info(f"created directory at: {path}")
 
 
-def save_json(path: Path, data: dict):
-    """save json data
+def save_dict2json(path: Path, data: dict):
+    """save dictionary data to json file
 
     Args:
         path (Path): path to json file
