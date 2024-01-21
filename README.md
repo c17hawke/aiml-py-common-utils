@@ -29,8 +29,8 @@ from aiml_py_common_utils import read_yaml
 
 content = read_yaml(path_to_yaml)
 
-print(content.string)
-print(content.integer)
+print(content.string) # prints "Hello, World"
+print(content.integer) # prints 25
 
 # And similarly other content as well
 ```
@@ -69,3 +69,30 @@ example_dict = example_dict = {
 path_to_json = Path("path/to/example.json")
 save_dict2json(path=path_to_json)
 ```
+
+### 4. load a JSON file
+
+For a sample JSON file at the given path containing- 
+
+```JSON
+{
+  "string": "Hello, World",
+  "integer": 25,
+  "floating_point": 3.14,
+  "boolean": true,
+  "null_value": null,
+}
+```
+
+The python code will look like - 
+
+```python
+from pathlib import Path
+from aiml_py_common_utils import load_json
+
+path = Path("path/to/example.json")
+content = load_json(path=path_to_json)
+print(content.string) # prints "Hello, World"
+print(content.integer) # prints 25
+```
+
