@@ -1,5 +1,4 @@
 notebook
-ensure
 mkdocs-material
 ipywidgets
 tqdm
