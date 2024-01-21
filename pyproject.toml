@@ -5,7 +5,6 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "aiml-py-common-utils"
 version = "0.0.1"
-description = "<COMMAND_NAME> is a Python-based command-line interface (CLI) utility."
 authors = [
     {name = "c17hawke", email = "sunny.c17hawke@gmail.com"},
 ]
