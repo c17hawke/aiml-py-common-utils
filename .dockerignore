@@ -1,0 +1,14 @@
+.github/
+.mypy_cache/
+.pytest_cache/
+.tox/
+.vscode/
+artifacts/
+docs/
+env/
+.env
+logs/
+research/
+.pytest_cache/
+.coverage/
+run_tox.sh

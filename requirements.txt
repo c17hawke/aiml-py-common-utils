@@ -1,0 +1,8 @@
+notebook
+ensure
+mkdocs-material
+ipywidgets
+tqdm
+python-dotenv
+pip-chill
+-e .

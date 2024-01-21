@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  <PROJECT_NAME>:
+    build:
+      context: .
+    volumes:
+      - ${PWD}/reports:/app/reports
+    command: ["tox"]

@@ -1,0 +1,31 @@
+# name: docs-ci
+# on:
+#   workflow_run:
+#     workflows: [Python application]
+#     types: [completed]
+#     branches: [ main ]
+
+# permissions:
+#   contents: write
+# jobs:
+#   deploy:
+#     runs-on: ubuntu-latest
+#     if: ${{ github.event.workflow_run.conclusion == 'success' }}
+#     steps:
+#       - uses: actions/checkout@v3
+#       - uses: actions/setup-python@v4
+#         with:
+#           python-version: 3.x
+#       - uses: actions/cache@v2
+#         with:
+#           key: ${{ github.ref }}
+#           path: .cache
+#       - run: |
+#           echo 'The triggering workflow passed'
+#           pip install mkdocs-material 
+#           mkdocs gh-deploy --force
+#   on-failure:
+#     runs-on: ubuntu-latest
+#     if: ${{ github.event.workflow_run.conclusion == 'failure' }}
+#     steps:
+#       - run: echo 'The triggering workflow failed. Hence, Quiting'
