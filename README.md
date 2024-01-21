@@ -37,7 +37,7 @@ print(content.integer)
 
 ### 2. Create multiple directories
 
-Let's say you have to create multiple directories like - "dir_one", "dir_two" and "dir_three". So you can use this function as follows - 
+Let's say you have to create multiple directories like - `dir_one`, `dir_two` and `dir_three`. So you can use this function as follows - 
 
 ```python
 from pathlib import Path
