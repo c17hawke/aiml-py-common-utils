@@ -5,4 +5,5 @@ ipywidgets
 tqdm
 python-dotenv
 pip-chill
+loguru==0.7.2
 -e .

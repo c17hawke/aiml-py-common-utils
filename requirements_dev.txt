@@ -5,6 +5,7 @@ ipywidgets
 tqdm
 python-dotenv
 pip-chill
+loguru==0.7.2
 
 # dev requirements -
 pytest==7.4.4
