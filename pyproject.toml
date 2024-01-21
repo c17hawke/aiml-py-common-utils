@@ -44,8 +44,8 @@ testpaths = [
     ]
 
 [tool.mypy]
-mypy_path = "src"
 ignore_missing_imports = true
+mypy_path = "src"
 implicit_optional = true # update for latest mypy
 
 [tool.ruff]
