@@ -96,3 +96,35 @@ print(content.string) # prints "Hello, World"
 print(content.integer) # prints 25
 ```
 
+### 5. Save a binary file 
+
+You can save a snapshot of a data using this function
+
+```python
+from pathlib import Path
+from aiml_py_common_utils import save_bin
+
+example_dict = example_dict = {
+  "string": "Hello, World",
+  "integer": 25,
+  "floating_point": 3.14,
+  "boolean": True,
+  "null_value": None,
+}
+path_to_json = Path("path/to/example.bin")
+save_bin(data=example_dict, path=path_to_json)
+```
+
+### 6. Load a binary file 
+
+You can Load the snapshot of a data saved above using this function later on
+
+```python
+from pathlib import Path
+from aiml_py_common_utils import load_bin
+
+path_to_json = Path("path/to/example.bin")
+
+loaded_bin_content = load_bin(path=path_to_json)
+```
+
