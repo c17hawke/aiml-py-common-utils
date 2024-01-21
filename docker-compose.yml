@@ -1,7 +1,7 @@
 version: '3'
 
 services:
-  <PROJECT_NAME>:
+  aiml_py_common_utils:
     build:
       context: .
     volumes:

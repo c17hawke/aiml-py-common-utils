@@ -3,16 +3,16 @@ requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "<REPO_NAME>"
+name = "aiml-py-common-utils"
 version = "0.0.1"
 description = "<COMMAND_NAME> is a Python-based command-line interface (CLI) utility."
 authors = [
-    {name = "<GITHUB_USER_NAME>", email = "<AUTHOR_EMAIL>"},
+    {name = "c17hawke", email = "sunny.c17hawke@gmail.com"},
 ]
 dependencies = ["requests==2.28.2"]
 requires-python = ">=3.7"
 readme = "README.md"
-license = {text = "<LICENCSE_NAME>"}
+license = {text = "MIT"}
 classifiers = [
     "Operating System :: OS Independent",
     "Programming Language :: Python :: 3.7",
@@ -34,9 +34,9 @@ testing = [
 ]
 
 [project.urls]
-"Bug Tracker" = "https://github.com/<GITHUB_USER_NAME>/<REPO_NAME>/issues"
-"Documentation" = "https://<GITHUB_USER_NAME>.github.io/<REPO_NAME>/"
-"Source" = "https://github.com/<GITHUB_USER_NAME>/<REPO_NAME>"
+"Bug Tracker" = "https://github.com/c17hawke/aiml-py-common-utils/issues"
+"Documentation" = "https://c17hawke.github.io/aiml-py-common-utils/"
+"Source" = "https://github.com/c17hawke/aiml-py-common-utils"
 
 [tool.pytest.ini_options]
 testpaths = [

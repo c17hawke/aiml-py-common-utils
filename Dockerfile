@@ -1,4 +1,4 @@
-FROM python:<PYTHON_VERSION>
+FROM python:3.9
 
 # Install necessary packages
 RUN apt-get update && \

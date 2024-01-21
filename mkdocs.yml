@@ -1,16 +1,16 @@
 # Project information
-site_name: <PACKAGE_NAME>
+site_name: aiml_py_common_utils
 # defeine TOC or order of website-
 nav:
   - Home: index.md
 
-site_author: <AUTHOR_NAME>
+site_author: SUNNY BHAVEEN CHANDRA
 site_description: >-
   A library for rendering YouTube and reference sites in Jupyter notebooks
 
 # Repository
-repo_name: <GITHUB_USER_NAME>/<REPO_NAME>
-repo_url: https://github.com/<GITHUB_USER_NAME>/<REPO_NAME>
+repo_name: c17hawke/aiml-py-common-utils
+repo_url: https://github.com/c17hawke/aiml-py-common-utils
 
 # Configuration
 theme:
@@ -39,13 +39,13 @@ theme:
 extra:
   social:
     - icon: fontawesome/brands/github-alt
-      link: https://github.com/<GITHUB_USER_NAME>
+      link: https://github.com/c17hawke
     - icon: fontawesome/brands/twitter
-      link: https://twitter.com/<GITHUB_USER_NAME>
+      link: https://twitter.com/c17hawke
     - icon: fontawesome/brands/linkedin
-      link: https://linkedin.com/in/<GITHUB_USER_NAME>
+      link: https://linkedin.com/in/c17hawke
     - icon: fontawesome/brands/instagram
-      link: https://www.instagram.com/<GITHUB_USER_NAME>/
+      link: https://www.instagram.com/c17hawke/
 
 extra_javascript:
   - javascripts/mathjax.js
@@ -70,4 +70,4 @@ plugins:
   - search
 
 copyright: |
-  &copy; <YEAR> <a href="https://github.com/<GITHUB_USER_NAME>"  target="_blank" rel="noopener"><AUTHOR_NAME></a>
+  &copy; 2024 <a href="https://github.com/c17hawke"  target="_blank" rel="noopener">SUNNY BHAVEEN CHANDRA</a>
