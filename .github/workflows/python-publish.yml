@@ -47,7 +47,7 @@ jobs:
     #     pytest --cov-report term-missing --cov=src/codebuddy tests/ --cov-fail-under=90    
     - name: Build package
       run: | 
-        pip install build
+        python -m pip install build
         python -m build
     - name: Publish package
       uses: pypa/gh-action-pypi-publish@27b31702a0e7fc50959f5ad993c78deac1bdfc29
