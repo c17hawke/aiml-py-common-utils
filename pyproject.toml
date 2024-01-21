@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "aiml-py-common-utils"
-version = "0.0.1"
+version = "0.0.1b"
 authors = [
     {name = "c17hawke", email = "sunny.c17hawke@gmail.com"},
 ]
