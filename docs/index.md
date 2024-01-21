@@ -1,31 +1,14 @@
-# AIML PYTHON COMMON UTILS
+# AIML Python Common Utilities
 
-This repository contains the most commonly used utilities that can be used in almost any AIML application.
+This repository provides a collection of utilities that are frequently used in various AIML applications.
 
-## Current Version contains the following utilities - 
+## Current Version Features
 
-### 1. Read YAML file and return the ConfigBox type object -
+The current version includes the following utilities:
 
-for a yaml file like this - 
+### 1. YAML File Reader
 
-```yaml
-# Scalars
-string: "Hello, World"
-integer: 25
-floating_point: 3.14
-boolean: true
-null_value: null
-
-# Sequences
-sequence:# AIML PYTHON COMMON UTILS
-
-This repository contains the most commonly used utilities that can be used in almost any AIML application.
-
-## Current Version contains the following utilities - 
-
-### 1. Read YAML file and return the ConfigBox type object -
-
-for a yaml file like this - 
+This utility reads a YAML file and returns a ConfigBox type object. For instance, given a YAML file with the following content:
 
 ```yaml
 # Scalars
@@ -41,22 +24,21 @@ sequence:
   - item2
   - item3
 ```
-You can access the content of yaml as follows- 
+
+You can access the content of the YAML file as follows:
 
 ```python
 from aiml_py_common_utils import read_yaml
 
 content = read_yaml(path_to_yaml)
 
-print(content.string)
-print(content.integer)
-
-# And similarly other content as well
+print(content.string)  # Outputs: "Hello, World"
+print(content.integer)  # Outputs: 25
 ```
 
-### 2. Create multiple directories
+### 2. Directory Creator
 
-Let's say you have to create multiple directories like - `dir_one`, `dir_two` and `dir_three`. So you can use this function as follows - 
+This utility allows you to create multiple directories. For example, to create directories named `dir_one`, `dir_two`, and `dir_three`, you can use the function as follows:
 
 ```python
 from pathlib import Path
@@ -68,74 +50,96 @@ list_of_directories_paths = [
     Path("./dir_three")
 ]
 
-create_directories(path_to_directories= list_of_directories_paths)
+create_directories(path_to_directories=list_of_directories_paths)
 ```
 
-### 3. Save the directory as a JSON file
+### 3. JSON File Writer
 
+This utility saves a dictionary as a JSON file:
 
 ```python
 from pathlib import Path
 from aiml_py_common_utils import save_dict2json
 
-example_dict = example_dict = {
+example_dict = {
   "string": "Hello, World",
   "integer": 25,
   "floating_point": 3.14,
   "boolean": True,
   "null_value": None,
 }
+
 path_to_json = Path("path/to/example.json")
 save_dict2json(path=path_to_json)
 ```
-  - item1
-  - item2
-  - item3
+
+
+### 4. JSON File Reader
+
+This utility loads a JSON file. For example, given a JSON file at a certain path containing:
+
+```JSON
+{
+  "string": "Hello, World",
+  "integer": 25,
+  "floating_point": 3.14,
+  "boolean": true,
+  "null_value": null,
+}
 ```
-You can access the content of yaml as follows- 
 
-```python
-from aiml_py_common_utils import read_yaml
-
-content = read_yaml(path_to_yaml)
-
-print(content.string)
-print(content.integer)
-
-# And similarly other content as well
-```
-
-### 2. Create multiple directories
-
-Let's say you have to create multiple directories like - "dir_one", "dir_two" and "dir_three". So you can use this function as follows - 
+You can load the content of the JSON file as follows:
 
 ```python
 from pathlib import Path
-from aiml_py_common_utils import create_directories
+from aiml_py_common_utils import load_json
 
-list_of_directories_paths = [
-    Path("./dir_one"),
-    Path("./dir_two"),
-    Path("./dir_three")
-]
-
-create_directories(path_to_directories= list_of_directories_paths)
+path = Path("path/to/example.json")
+content = load_json(path=path_to_json)
+print(content.string)  # Outputs: "Hello, World"
+print(content.integer)  # Outputs: 25
 ```
 
-### 3. Save the directory as a JSON file
+### 5. Binary File Writer
 
+This utility saves a snapshot of data as a binary file:
 
 ```python
 from pathlib import Path
-from aiml_py_common_utils import save_dict2json
+from aiml_py_common_utils import save_bin
 
-example_dict = example_dict = {
+example_dict = {
   "string": "Hello, World",
   "integer": 25,
   "floating_point": 3.14,
   "boolean": True,
   "null_value": None,
 }
-path_to_json = Path("path/to/example.json")
-save_dict2json(path=path_to_json)
+
+path_to_bin = Path("path/to/example.bin")
+save_bin(data=example_dict, path=path_to_bin)
+```
+
+### 6. Binary File Reader
+
+This utility loads a snapshot of data from a binary file:
+
+```python
+from pathlib import Path
+from aiml_py_common_utils import load_bin
+
+path_to_bin = Path("path/to/example.bin")
+loaded_bin_content = load_bin(path=path_to_bin)
+```
+
+### 7. File Size Calculator
+
+This utility calculates the size of a file in kilobytes:
+
+```python
+from pathlib import Path
+from aiml_py_common_utils import get_size
+
+filepath = Path("path/to/example.file")
+size_in_kb = get_size(path=filepath)
 ```
