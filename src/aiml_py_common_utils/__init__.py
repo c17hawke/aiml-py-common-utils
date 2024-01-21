@@ -1,7 +1,11 @@
 import sys
 from pathlib import Path
 from loguru import logger
+import os
 from aiml_py_common_utils.common import * # noqa
+from dotenv import load_dotenv
+
+load_dotenv()
 
 ###################################################################
 # logging configuration
@@ -16,6 +20,8 @@ from aiml_py_common_utils.common import * # noqa
 DEBUG = True
 TERMINAL = False
 LOG_LOCAL = False
+if "LOG_LOCAL" in os.environ:
+    LOG_LOCAL = bool(int(os.environ["LOG_LOCAL"]))
 log_dir = Path("_logs")
 log_filepath = log_dir / "logs.log"
 
