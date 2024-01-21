@@ -15,7 +15,8 @@ from aiml_py_common_utils.common import * # noqa
 
 DEBUG = True
 TERMINAL = False
-log_dir = Path("logs")
+LOG_LOCAL = False
+log_dir = Path("_logs")
 log_filepath = log_dir / "logs.log"
 
 logger.remove()
@@ -29,6 +30,8 @@ def _log_to_terminal(sink=sys.stdout, level="DEBUG", colorize=True):
             "<cyan>[{time:YYYY-MM-DD HH:mm:ss}</cyan> <level><cyan>{level} {module}.{function}:{line}]:</cyan> {message}</level>") # noqa
 
 def _log_to_local_file(sink=str(log_filepath), level="DEBUG", rotation="20MB"):
+    if not LOG_LOCAL:
+        return None
     logger.add(
         sink=sink, 
         level=level, 
