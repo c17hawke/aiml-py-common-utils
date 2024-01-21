@@ -35,3 +35,19 @@ print(content.integer)
 # And similarly other content as well
 ```
 
+### 2. Create multiple directories
+
+Let's say you have to create multiple directories like - "dir_one", "dir_two" and "dir_three". So you can use this function as follows - 
+
+```python
+from pathlib import Path
+from aiml_py_common_utils import create_directories
+
+list_of_directories_paths = [
+    Path("./dir_one"),
+    Path("./dir_two"),
+    Path("./dir_three")
+]
+
+create_directories(path_to_directories= list_of_directories_paths)
+```
