@@ -5,7 +5,7 @@ import json
 import joblib
 from box import ConfigBox
 from pathlib import Path
-from typing import Any
+from typing import Any, List
 from aiml_py_common_utils import logger
 
 def read_yaml(path_to_yaml: Path) -> ConfigBox:
@@ -32,7 +32,7 @@ def read_yaml(path_to_yaml: Path) -> ConfigBox:
         raise e
 
 
-def create_directories(path_to_directories: list, verbose=True):
+def create_directories(path_to_directories: List[Path], verbose: bool=True):
     """create list of directories
 
     Args:
