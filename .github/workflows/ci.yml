@@ -34,10 +34,10 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements_dev.txt
-        pip install build
+        # pip install build
     - name: Test with pytest
       run: |
-        ruff check src/codebuddy/
+        ruff check src/aiml_py_common_utils/
         mypy src/
         pytest -v tests/unit
         pytest -v tests/integration
