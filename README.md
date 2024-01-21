@@ -51,3 +51,21 @@ list_of_directories_paths = [
 
 create_directories(path_to_directories= list_of_directories_paths)
 ```
+
+### 3. Save the directory as a JSON file
+
+
+```python
+from pathlib import Path
+from aiml_py_common_utils import save_dict2json
+
+example_dict = example_dict = {
+  "string": "Hello, World",
+  "integer": 25,
+  "floating_point": 3.14,
+  "boolean": True,
+  "null_value": None,
+}
+path_to_json = Path("path/to/example.json")
+save_dict2json(path=path_to_json)
+```
