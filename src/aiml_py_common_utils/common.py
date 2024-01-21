@@ -32,7 +32,7 @@ def read_yaml(path_to_yaml: Path) -> ConfigBox:
         raise e
 
 
-def create_directories(path_to_directories: List[Path], verbose: bool=True):
+def create_directories(path_to_directories: List[Path], verbose: bool=True) -> None:
     """create list of directories
 
     Args:
@@ -45,7 +45,7 @@ def create_directories(path_to_directories: List[Path], verbose: bool=True):
             logger.info(f"created directory at: {path}")
 
 
-def save_dict2json(path: Path, data: dict):
+def save_dict2json(path: Path, data: dict) -> None:
     """save dictionary data to json file
 
     Args:
@@ -74,7 +74,7 @@ def load_json(path: Path) -> ConfigBox:
     return ConfigBox(content)
 
 
-def save_bin(data: Any, path: Path):
+def save_bin(data: Any, path: Path) -> None:
     """save binary file
 
     Args:

@@ -4,6 +4,7 @@ from loguru import logger
 import os
 from aiml_py_common_utils.common import * # noqa
 from dotenv import load_dotenv
+from typing import TextIO
 
 load_dotenv()
 
@@ -27,7 +28,7 @@ log_filepath = log_dir / "logs.log"
 
 logger.remove()
 
-def _log_to_terminal(sink=sys.stdout, level="DEBUG", colorize=True):
+def _log_to_terminal(sink: TextIO=sys.stdout, level: str="DEBUG", colorize: bool=True) -> None:
     logger.add(
         sink=sink, 
         level=level, 
@@ -35,7 +36,7 @@ def _log_to_terminal(sink=sys.stdout, level="DEBUG", colorize=True):
         format=\
             "<cyan>[{time:YYYY-MM-DD HH:mm:ss}</cyan> <level><cyan>{level} {module}.{function}:{line}]:</cyan> {message}</level>") # noqa
 
-def _log_to_local_file(sink=str(log_filepath), level="DEBUG", rotation="20MB"):
+def _log_to_local_file(sink: str=str(log_filepath), level: str="DEBUG", rotation: str="20MB") -> None:
     if not LOG_LOCAL:
         return None
     logger.add(
