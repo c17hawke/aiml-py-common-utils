@@ -1,12 +1,14 @@
-# AIML PYTHON COMMON UTILS
+# AIML Python Common Utilities
 
-This repository contains the most commonly used utilities that can be used in almost any AIML application.
+This repository provides a collection of utilities that are frequently used in various AIML applications.
 
-## Current Version contains the following utilities - 
+## Current Version Features
 
-### 1. Read YAML file and return the ConfigBox type object -
+The current version includes the following utilities:
 
-for a yaml file like this - 
+### 1. YAML File Reader
+
+This utility reads a YAML file and returns a ConfigBox type object. For instance, given a YAML file with the following content:
 
 ```yaml
 # Scalars
@@ -22,22 +24,21 @@ sequence:
   - item2
   - item3
 ```
-You can access the content of yaml as follows- 
+
+You can access the content of the YAML file as follows:
 
 ```python
 from aiml_py_common_utils import read_yaml
 
 content = read_yaml(path_to_yaml)
 
-print(content.string) # prints "Hello, World"
-print(content.integer) # prints 25
-
-# And similarly other content as well
+print(content.string)  # Outputs: "Hello, World"
+print(content.integer)  # Outputs: 25
 ```
 
-### 2. Create multiple directories
+### 2. Directory Creator
 
-Let's say you have to create multiple directories like - `dir_one`, `dir_two` and `dir_three`. So you can use this function as follows - 
+This utility allows you to create multiple directories. For example, to create directories named `dir_one`, `dir_two`, and `dir_three`, you can use the function as follows:
 
 ```python
 from pathlib import Path
@@ -49,30 +50,33 @@ list_of_directories_paths = [
     Path("./dir_three")
 ]
 
-create_directories(path_to_directories= list_of_directories_paths)
+create_directories(path_to_directories=list_of_directories_paths)
 ```
 
-### 3. Save the directory as a JSON file
+### 3. JSON File Writer
 
+This utility saves a dictionary as a JSON file:
 
 ```python
 from pathlib import Path
 from aiml_py_common_utils import save_dict2json
 
-example_dict = example_dict = {
+example_dict = {
   "string": "Hello, World",
   "integer": 25,
   "floating_point": 3.14,
   "boolean": True,
   "null_value": None,
 }
+
 path_to_json = Path("path/to/example.json")
 save_dict2json(path=path_to_json)
 ```
 
-### 4. load a JSON file
 
-For a sample JSON file at the given path containing- 
+### 4. JSON File Reader
+
+This utility loads a JSON file. For example, given a JSON file at a certain path containing:
 
 ```JSON
 {
@@ -84,7 +88,7 @@ For a sample JSON file at the given path containing-
 }
 ```
 
-The python code will look like - 
+You can load the content of the JSON file as follows:
 
 ```python
 from pathlib import Path
@@ -92,51 +96,50 @@ from aiml_py_common_utils import load_json
 
 path = Path("path/to/example.json")
 content = load_json(path=path_to_json)
-print(content.string) # prints "Hello, World"
-print(content.integer) # prints 25
+print(content.string)  # Outputs: "Hello, World"
+print(content.integer)  # Outputs: 25
 ```
 
-### 5. Save a binary file 
+### 5. Binary File Writer
 
-You can save a snapshot of a data using this function
+This utility saves a snapshot of data as a binary file:
 
 ```python
 from pathlib import Path
 from aiml_py_common_utils import save_bin
 
-example_dict = example_dict = {
+example_dict = {
   "string": "Hello, World",
   "integer": 25,
   "floating_point": 3.14,
   "boolean": True,
   "null_value": None,
 }
+
 path_to_bin = Path("path/to/example.bin")
 save_bin(data=example_dict, path=path_to_bin)
 ```
 
-### 6. Load a binary file 
+### 6. Binary File Reader
 
-You can Load the snapshot of a data saved above using this function later on
+This utility loads a snapshot of data from a binary file:
 
 ```python
 from pathlib import Path
 from aiml_py_common_utils import load_bin
 
 path_to_bin = Path("path/to/example.bin")
-
 loaded_bin_content = load_bin(path=path_to_bin)
 ```
 
-### 7. Get size of a file in KBs
+### 7. File Size Calculator
 
-To get the size of a file in `KiloBytes` you can use the following function
+This utility calculates the size of a file in kilobytes:
 
 ```python
 from pathlib import Path
 from aiml_py_common_utils import get_size
 
 filepath = Path("path/to/example.file")
-
 size_in_kb = get_size(path=filepath)
 ```
