@@ -45,8 +45,14 @@ testing = [
 
 [tool.pytest.ini_options]
 testpaths = [
-    "tests"
+    "tests/unit",
+    "tests/integration"
     ]
+filterwarnings = [
+    "ignore::UserWarning:env/*", 
+    "ignore::DeprecationWarning:env/*"
+    ]
+
 
 [tool.mypy]
 ignore_missing_imports = true
