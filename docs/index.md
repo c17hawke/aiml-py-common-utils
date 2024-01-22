@@ -6,140 +6,28 @@ This repository provides a collection of utilities that are frequently used in v
 
 The current version includes the following utilities:
 
-### 1. YAML File Reader
+### Common utilities - 
 
-This utility reads a YAML file and returns a ConfigBox type object. For instance, given a YAML file with the following content:
+1. **YAML File Reader**: This utility reads a YAML file and returns a ConfigBox type object.
 
-```yaml
-# Scalars
-string: "Hello, World"
-integer: 25
-floating_point: 3.14
-boolean: true
-null_value: null
+2. **Directory Creator**: This utility allows you to create multiple directories.
 
-# Sequences
-sequence:
-  - item1
-  - item2
-  - item3
-```
+3. **JSON File Writer**: This utility saves a dictionary as a JSON file
 
-You can access the content of the YAML file as follows:
+4. **JSON File Reader**: This utility loads a JSON file. 
 
-```python
-from aiml_py_common_utils import read_yaml
+5. **Binary File Writer**: This utility saves a snapshot of data as a binary file.
 
-content = read_yaml(path_to_yaml)
+6. **Binary File Reader**: This utility loads a snapshot of data from a binary file:
 
-print(content.string)  # Outputs: "Hello, World"
-print(content.integer)  # Outputs: 25
-```
+7. **File Size Calculator**: This utility calculates the size of a file in kilobytes:
 
-### 2. Directory Creator
+Check the next page for examples - [Common utilities](https://c17hawke.github.io/)
 
-This utility allows you to create multiple directories. For example, to create directories named `dir_one`, `dir_two`, and `dir_three`, you can use the function as follows:
+### LLM OpenAI Common Utilities
 
-```python
-from pathlib import Path
-from aiml_py_common_utils import create_directories
+This utility contains the following utilities - 
 
-list_of_directories_paths = [
-    Path("./dir_one"),
-    Path("./dir_two"),
-    Path("./dir_three")
-]
+1. **Token calculator for GPT3.5-Turbo model**: It can calculate the number of tokens as per the GPT3.5-Turbo model
 
-create_directories(path_to_directories=list_of_directories_paths)
-```
-
-### 3. JSON File Writer
-
-This utility saves a dictionary as a JSON file:
-
-```python
-from pathlib import Path
-from aiml_py_common_utils import save_dict2json
-
-example_dict = {
-  "string": "Hello, World",
-  "integer": 25,
-  "floating_point": 3.14,
-  "boolean": True,
-  "null_value": None,
-}
-
-path_to_json = Path("path/to/example.json")
-save_dict2json(path=path_to_json)
-```
-
-
-### 4. JSON File Reader
-
-This utility loads a JSON file. For example, given a JSON file at a certain path containing:
-
-```JSON
-{
-  "string": "Hello, World",
-  "integer": 25,
-  "floating_point": 3.14,
-  "boolean": true,
-  "null_value": null,
-}
-```
-
-You can load the content of the JSON file as follows:
-
-```python
-from pathlib import Path
-from aiml_py_common_utils import load_json
-
-path = Path("path/to/example.json")
-content = load_json(path=path_to_json)
-print(content.string)  # Outputs: "Hello, World"
-print(content.integer)  # Outputs: 25
-```
-
-### 5. Binary File Writer
-
-This utility saves a snapshot of data as a binary file:
-
-```python
-from pathlib import Path
-from aiml_py_common_utils import save_bin
-
-example_dict = {
-  "string": "Hello, World",
-  "integer": 25,
-  "floating_point": 3.14,
-  "boolean": True,
-  "null_value": None,
-}
-
-path_to_bin = Path("path/to/example.bin")
-save_bin(data=example_dict, path=path_to_bin)
-```
-
-### 6. Binary File Reader
-
-This utility loads a snapshot of data from a binary file:
-
-```python
-from pathlib import Path
-from aiml_py_common_utils import load_bin
-
-path_to_bin = Path("path/to/example.bin")
-loaded_bin_content = load_bin(path=path_to_bin)
-```
-
-### 7. File Size Calculator
-
-This utility calculates the size of a file in kilobytes:
-
-```python
-from pathlib import Path
-from aiml_py_common_utils import get_size
-
-filepath = Path("path/to/example.file")
-size_in_kb = get_size(path=filepath)
-```
+Check the respective page for examples - [LLM OpenAI Common utilities](https://c17hawke.github.io/)
