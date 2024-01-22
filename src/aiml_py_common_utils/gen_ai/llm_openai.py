@@ -14,8 +14,7 @@ def _num_of_tokens(string: str, enc: Encoding) -> int:
     Returns:
         int: number of tokens in string passed as argument
     """
-    encoding = enc
-    num_tokens = len(encoding.encode(string))
+    num_tokens = len(enc.encode(string))
     return num_tokens
 
 def num_of_tokens_gpt35_turbo(string: str, enc: Encoding=enc_gpt35_turbo) -> int:
@@ -28,4 +27,4 @@ def num_of_tokens_gpt35_turbo(string: str, enc: Encoding=enc_gpt35_turbo) -> int
     Returns:
         int: number of tokens in string passed as argument
     """
-    return _num_of_tokens(string=string, encoding=enc)
+    return _num_of_tokens(string=string, enc=enc)
