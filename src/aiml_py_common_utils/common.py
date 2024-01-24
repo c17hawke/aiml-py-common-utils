@@ -110,3 +110,21 @@ def get_size(path: Path) -> float:
     size_in_kb = round(os.path.getsize(path)/1024)
     logger.info(f"size of: {path} =~ {size_in_kb} KB")
     return size_in_kb
+
+def word_wrap(string: str, n_chars: str=72) -> str:
+    """Breaks a string into lines at the next space beyond n_chars.
+
+    Parameters:
+        string (str): The string that needs to be printed.
+        n_chars (int, optional): The string is broken into lines after n_chars. Defaults to 72.
+
+    Returns:
+        str: The input string formatted with line breaks.
+    """
+    if len(string) < n_chars:
+        return string
+    else:
+        return \
+            string[:n_chars].rsplit(' ', 1)[0] \
+            + '\n' \
+            + word_wrap(string[len(string[:n_chars].rsplit(' ', 1)[0])+1:], n_chars)
