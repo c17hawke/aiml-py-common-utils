@@ -111,7 +111,7 @@ def get_size(path: Path) -> float:
     logger.info(f"size of: {path} =~ {size_in_kb} KB")
     return size_in_kb
 
-def word_wrap(string: str, n_chars: str=72) -> str:
+def word_wrap(string: str, n_chars: int=72) -> str:
     """Breaks a string into lines at the next space beyond n_chars.
 
     Parameters:
