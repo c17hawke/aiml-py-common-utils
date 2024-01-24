@@ -5,7 +5,7 @@ import json
 import joblib
 from box import ConfigBox
 from pathlib import Path
-from typing import Any, List, dict
+from typing import Any, List
 from aiml_py_common_utils import logger
 
 def simple_read_yaml(path_to_yaml: Path) -> dict:
