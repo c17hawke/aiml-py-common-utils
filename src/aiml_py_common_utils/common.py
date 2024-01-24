@@ -5,10 +5,10 @@ import json
 import joblib
 from box import ConfigBox
 from pathlib import Path
-from typing import Any, List
+from typing import Any, List, Union, Dict
 from aiml_py_common_utils import logger
 
-def simple_read_yaml(path_to_yaml: Path) -> dict:
+def simple_read_yaml(path_to_yaml: Path) -> Dict:
     """reads yaml file and returns
 
     Args:
@@ -19,7 +19,7 @@ def simple_read_yaml(path_to_yaml: Path) -> dict:
         e: empty file
 
     Returns:
-        dict: dict type
+        Dict: dict type
     """
     try:
         with open(path_to_yaml) as yaml_file:
@@ -66,12 +66,12 @@ def create_directories(path_to_directories: List[Path], verbose: bool=True) -> N
             logger.info(f"created directory at: {path}")
 
 
-def save_dict2json(path: Path, data: dict) -> None:
+def save_dict2json(path: Path, data: Dict) -> None:
     """save dictionary data to json file
 
     Args:
         path (Path): path to json file
-        data (dict): data to be saved in json file
+        data (Dict): data to be saved in json file
     """
     with open(path, "w") as f:
         json.dump(data, f, indent=4)
@@ -79,14 +79,14 @@ def save_dict2json(path: Path, data: dict) -> None:
     logger.info(f"json file saved at: {path}")
 
 
-def simple_load_json(path: Path) -> dict:
+def simple_load_json(path: Path) -> Dict:
     """load json files data
 
     Args:
         path (Path): path to json file
 
     Returns:
-        dict: json data as dict
+        Dict: json data as dict
     """
     with open(path) as f:
         content = json.load(f)
@@ -108,6 +108,21 @@ def box_load_json(path: Path) -> ConfigBox:
 
     logger.info(f"json file loaded succesfully from: {path}")
     return ConfigBox(content)
+
+
+def stringify_json(data: Union[Dict, List[Dict]], indent: int=4) -> str:
+    """
+    Converts a dictionary or a list of dictionaries into a JSON string with specified indentation.
+
+    Parameters:
+        data (Union[Dict, List[Dict]]): The dictionary or list of dictionaries that needs to be converted into a JSON string.
+        indent (int, optional): The number of spaces for indentation in the JSON string. If not provided, it defaults to 4.
+
+    Returns:
+        str: The input data formatted as a JSON string with the specified indentation.
+    """
+    return json.dumps(obj=data, indent=indent)
+
 
 def save_bin(data: Any, path: Path) -> None:
     """save binary file
