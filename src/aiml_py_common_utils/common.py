@@ -5,10 +5,31 @@ import json
 import joblib
 from box import ConfigBox
 from pathlib import Path
-from typing import Any, List
+from typing import Any, List, dict
 from aiml_py_common_utils import logger
 
-def read_yaml(path_to_yaml: Path) -> ConfigBox:
+def simple_read_yaml(path_to_yaml: Path) -> dict:
+    """reads yaml file and returns
+
+    Args:
+        path_to_yaml (str): path like input
+
+    Raises:
+        ValueError: if yaml file is empty
+        e: empty file
+
+    Returns:
+        dict: dict type
+    """
+    try:
+        with open(path_to_yaml) as yaml_file:
+            content = yaml.safe_load(yaml_file)
+            logger.info(f"yaml file: {path_to_yaml} loaded successfully")
+            return content
+    except Exception as e:
+        raise e
+
+def box_read_yaml(path_to_yaml: Path) -> ConfigBox:
     """reads yaml file and returns
 
     Args:
@@ -58,7 +79,22 @@ def save_dict2json(path: Path, data: dict) -> None:
     logger.info(f"json file saved at: {path}")
 
 
-def load_json(path: Path) -> ConfigBox:
+def simple_load_json(path: Path) -> dict:
+    """load json files data
+
+    Args:
+        path (Path): path to json file
+
+    Returns:
+        dict: json data as dict
+    """
+    with open(path) as f:
+        content = json.load(f)
+
+    logger.info(f"json file loaded succesfully from: {path}")
+    return content
+
+def box_load_json(path: Path) -> ConfigBox:
     """load json files data
 
     Args:
@@ -72,7 +108,6 @@ def load_json(path: Path) -> ConfigBox:
 
     logger.info(f"json file loaded succesfully from: {path}")
     return ConfigBox(content)
-
 
 def save_bin(data: Any, path: Path) -> None:
     """save binary file
