@@ -8,6 +8,8 @@ from pathlib import Path
 from typing import Any, List, Union, Dict
 from aiml_py_common_utils import logger
 
+JSON_LIKE = Union[Dict[str, 'JSON_LIKE'], List['JSON_LIKE'], int, str, float, bool, None]
+
 def simple_read_yaml(path_to_yaml: Path) -> Dict:
     """reads yaml file and returns
 
@@ -66,12 +68,12 @@ def create_directories(path_to_directories: List[Path], verbose: bool=True) -> N
             logger.info(f"created directory at: {path}")
 
 
-def save_dict2json(path: Path, data: Dict) -> None:
-    """save dictionary data to json file
+def save_as_json(path: Path, data: JSON_LIKE) -> None:
+    """save json like data to json file
 
     Args:
         path (Path): path to json file
-        data (Dict): data to be saved in json file
+        data (JSON_LIKE): json like data to be saved in json file
     """
     with open(path, "w") as f:
         json.dump(data, f, indent=4)
