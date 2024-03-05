@@ -1,7 +1,9 @@
-from aiml_py_common_utils import save_as_json
+from aiml_py_common_utils import save_as_json, simple_read_yaml
 import json
 from _pytest.fixtures import FixtureFunction
 from pathlib import Path
+import pytest
+
 
 def test_save_as_json(mocker: FixtureFunction) -> None:
     # Mocking the open function, json.dump and logger.debug
@@ -16,3 +18,25 @@ def test_save_as_json(mocker: FixtureFunction) -> None:
     # Assert that json.dump was called with the correct arguments
     json.dump.assert_called_once_with(test_data, mocker.ANY, indent=4)
 
+
+def test_simple_read_yaml_success(mocker: FixtureFunction) -> None:
+    # Mocking the yaml.safe_load and open functions
+    mocker.patch('yaml.safe_load', return_value={"key": "value"})
+    mocker.patch('builtins.open', mocker.mock_open())
+
+    path_to_yaml = Path('test.yaml')
+    result = simple_read_yaml(path_to_yaml)
+
+    assert result == {"key": "value"}
+
+def test_simple_read_yaml_failure(mocker: FixtureFunction) -> None:
+    # Mocking the yaml.safe_load to raise an exception
+    mocker.patch('yaml.safe_load', side_effect=Exception('Test Exception'))
+    mocker.patch('builtins.open', mocker.mock_open())
+
+    path_to_yaml = Path('test.yaml')
+
+    with pytest.raises(Exception) as e:
+        simple_read_yaml(path_to_yaml)
+
+    assert str(e.value) == 'Test Exception'
