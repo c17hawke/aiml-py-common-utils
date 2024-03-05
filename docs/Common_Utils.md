@@ -73,7 +73,6 @@ path_to_json = Path("path/to/example.json")
 save_as_json(path=path_to_json)
 ```
 
-
 ### 4. JSON File Reader
 
 This utility loads a JSON file. For example, given a JSON file at a certain path containing:
