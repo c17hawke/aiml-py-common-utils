@@ -116,7 +116,7 @@ def stringify_json(data: Union[Dict, List[Dict]], indent: int=4) -> str:
     """
     Converts a dictionary or a list of dictionaries into a JSON string with specified indentation.
 
-    Parameters:
+    Args:
         data (Union[Dict, List[Dict]]): The dictionary or list of dictionaries that needs to be converted into a JSON string.
         indent (int, optional): The number of spaces for indentation in the JSON string. If not provided, it defaults to 4.
 
