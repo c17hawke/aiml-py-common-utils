@@ -55,11 +55,11 @@ create_directories(path_to_directories=list_of_directories_paths)
 
 ### 3. JSON File Writer
 
-This utility saves a dictionary as a JSON file:
+This utility saves a dict or list as a JSON file:
 
 ```python
 from pathlib import Path
-from aiml_py_common_utils import save_dict2json
+from aiml_py_common_utils import save_as_json
 
 example_dict = {
   "string": "Hello, World",
@@ -70,9 +70,8 @@ example_dict = {
 }
 
 path_to_json = Path("path/to/example.json")
-save_dict2json(path=path_to_json)
+save_as_json(path=path_to_json)
 ```
-
 
 ### 4. JSON File Reader
 
@@ -142,4 +141,15 @@ from aiml_py_common_utils import get_size
 
 filepath = Path("path/to/example.file")
 size_in_kb = get_size(path=filepath)
+```
+
+### 8. Convert dict/json as string
+
+This utility converts a dictionary or a list of dictionaries into a JSON string with specified indentation.
+
+```python
+from pathlib import Path
+from aiml_py_common_utils import stringify_json
+
+json_as_string = stringify_json(data={"key": "value"})
 ```

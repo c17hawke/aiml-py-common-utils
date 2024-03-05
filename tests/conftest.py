@@ -1,4 +1,5 @@
 import pytest
+from typing import Dict
 
 example_dict = {
   "string": "Hello, World",
@@ -55,10 +56,10 @@ nested:
 """
 
 @pytest.fixture
-def dummy_dict():
+def dummy_dict() -> Dict:
     return example_dict
 
 @pytest.fixture
-def get_example_yaml_file_content():
+def get_example_yaml_file_content() -> str:
     return yaml_file_content
 
