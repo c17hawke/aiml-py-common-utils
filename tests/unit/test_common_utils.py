@@ -4,7 +4,8 @@ from aiml_py_common_utils import (
     box_read_yaml,
     create_directories,
     simple_load_json,
-    box_load_json
+    box_load_json,
+    stringify_json,
 )
 import json
 from _pytest.fixtures import FixtureFunction
@@ -13,6 +14,7 @@ import pytest
 from box import ConfigBox
 import os
 from aiml_py_common_utils import logger
+
 
 def test_save_as_json(mocker: FixtureFunction) -> None:
     # Mocking the open function, json.dump and logger.debug
@@ -88,23 +90,49 @@ def test_create_directories_success(mocker: FixtureFunction) -> None:
     # Assert that os.makedirs was called for each directory
     assert os.makedirs.call_count == len(path_to_directories)
 
+
 def test_simple_load_json_success(mocker: FixtureFunction) -> None:
     # Mocking the yaml.safe_load and open functions
-    mocker.patch('json.load', return_value={"key": "value"})
+    mocker.patch("json.load", return_value={"key": "value"})
     mocker.patch("builtins.open", mocker.mock_open())
 
-    path = Path('path/to/json')
+    path = Path("path/to/json")
     result = simple_load_json(path)
 
     assert result == {"key": "value"}
 
+
 def test_box_load_json_success(mocker: FixtureFunction) -> None:
     # Mocking the yaml.safe_load and open functions
-    mocker.patch('json.load', return_value={"key": "value"})
+    mocker.patch("json.load", return_value={"key": "value"})
     mocker.patch("builtins.open", mocker.mock_open())
 
-    path = Path('path/to/json')
+    path = Path("path/to/json")
     result = box_load_json(path)
 
     assert result == ConfigBox({"key": "value"})
     assert isinstance(result, ConfigBox)
+
+
+def test_stringify_json_dict() -> None:
+    data = {"key": "value"}
+    result = stringify_json(data)
+    expected_result = '{\n    "key": "value"\n}'
+
+    assert result == expected_result
+
+
+def test_stringify_json_list_of_dicts() -> None:
+    data = [{"key1": "value1"}, {"key2": "value2"}]
+    result = stringify_json(data)
+    expected_result = '[\n    {\n        "key1": "value1"\n    },\n    {\n        "key2": "value2"\n    }\n]'
+
+    assert result == expected_result
+
+
+def test_stringify_json_indent() -> None:
+    data = {"key": "value"}
+    result = stringify_json(data, indent=2)
+    expected_result = '{\n  "key": "value"\n}'
+
+    assert result == expected_result
