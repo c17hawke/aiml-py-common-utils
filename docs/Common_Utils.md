@@ -142,3 +142,14 @@ from aiml_py_common_utils import get_size
 filepath = Path("path/to/example.file")
 size_in_kb = get_size(path=filepath)
 ```
+
+### 8. Convert dict/json as string
+
+This utility converts a dictionary or a list of dictionaries into a JSON string with specified indentation.
+
+```python
+from pathlib import Path
+from aiml_py_common_utils import stringify_json
+
+json_as_string = stringify_json(data={"key": "value"})
+```
