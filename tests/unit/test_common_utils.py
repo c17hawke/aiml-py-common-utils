@@ -6,6 +6,7 @@ from aiml_py_common_utils import (
     simple_load_json,
     box_load_json,
     stringify_json,
+    get_size
 )
 import json
 from _pytest.fixtures import FixtureFunction
@@ -14,7 +15,6 @@ import pytest
 from box import ConfigBox
 import os
 from aiml_py_common_utils import logger
-
 
 def test_save_as_json(mocker: FixtureFunction) -> None:
     # Mocking the open function, json.dump and logger.debug
@@ -136,3 +136,17 @@ def test_stringify_json_indent() -> None:
     expected_result = '{\n  "key": "value"\n}'
 
     assert result == expected_result
+
+
+def test_get_size_success(mocker: FixtureFunction) -> None:
+    # Mocking the os.path.getsize function
+    mocker.patch('os.path.getsize', return_value=2048)
+
+    path = Path('path/to/file')
+    result = get_size(path)
+
+    # Assert that os.path.getsize was called with the correct argument
+    os.path.getsize.assert_called_once_with(path)
+
+    # Assert that the result is as expected
+    assert result == 2  # 2048 bytes is 2 KB
