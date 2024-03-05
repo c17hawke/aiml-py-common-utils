@@ -3,7 +3,7 @@ import json
 import pytest # noqa
 from pathlib import Path
 
-def test_save_as_json(mocker):
+def test_save_as_json(mocker): # noqa
     # Mocking the open function, json.dump and logger.debug
     mocker.patch('builtins.open', mocker.mock_open())
     mocker.patch('json.dump')
