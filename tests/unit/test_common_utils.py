@@ -4,7 +4,7 @@ import pytest # noqa
 from pathlib import Path
 
 def test_save_dict2json(mocker):
-    # Mocking the open function, json.dump and logger.info
+    # Mocking the open function, json.dump and logger.debug
     mocker.patch('builtins.open', mocker.mock_open())
     mocker.patch('json.dump')
 
