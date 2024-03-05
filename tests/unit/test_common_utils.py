@@ -3,6 +3,8 @@ from aiml_py_common_utils import (
     simple_read_yaml,
     box_read_yaml,
     create_directories,
+    simple_load_json,
+    box_load_json
 )
 import json
 from _pytest.fixtures import FixtureFunction
@@ -85,3 +87,24 @@ def test_create_directories_success(mocker: FixtureFunction) -> None:
 
     # Assert that os.makedirs was called for each directory
     assert os.makedirs.call_count == len(path_to_directories)
+
+def test_simple_load_json_success(mocker: FixtureFunction) -> None:
+    # Mocking the yaml.safe_load and open functions
+    mocker.patch('json.load', return_value={"key": "value"})
+    mocker.patch("builtins.open", mocker.mock_open())
+
+    path = Path('path/to/json')
+    result = simple_load_json(path)
+
+    assert result == {"key": "value"}
+
+def test_box_load_json_success(mocker: FixtureFunction) -> None:
+    # Mocking the yaml.safe_load and open functions
+    mocker.patch('json.load', return_value={"key": "value"})
+    mocker.patch("builtins.open", mocker.mock_open())
+
+    path = Path('path/to/json')
+    result = box_load_json(path)
+
+    assert result == ConfigBox({"key": "value"})
+    assert isinstance(result, ConfigBox)
