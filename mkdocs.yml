@@ -3,8 +3,8 @@ site_name: aiml_py_common_utils
 # defeine TOC or order of website-
 nav:
   - Home: index.md
-  - Common Utils: common_utils.md
-  - LLM OpenAI Common Utils: llm_openai.md
+  - Common Utils: Common_Utils.md
+  - LLM OpenAI Common Utils: LLM_OpenAI.md
 
 site_author: SUNNY BHAVEEN CHANDRA
 site_description: >-
