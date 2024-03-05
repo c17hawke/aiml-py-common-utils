@@ -1,9 +1,9 @@
 from aiml_py_common_utils import save_as_json
 import json
-import pytest # noqa
+from _pytest.fixtures import FixtureFunction
 from pathlib import Path
 
-def test_save_as_json(mocker): # noqa
+def test_save_as_json(mocker: FixtureFunction) -> None:
     # Mocking the open function, json.dump and logger.debug
     mocker.patch('builtins.open', mocker.mock_open())
     mocker.patch('json.dump')
