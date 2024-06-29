@@ -3,6 +3,7 @@ from aiml_py_common_utils import (
     simple_read_yaml,
     box_read_yaml,
     create_directories,
+    create_directory,
     simple_load_json,
     box_load_json,
     stringify_json,
@@ -89,6 +90,17 @@ def test_create_directories_success(mocker: FixtureFunction) -> None:
 
     # Assert that os.makedirs was called for each directory
     assert os.makedirs.call_count == len(path_to_directories)
+
+def test_create_directory_success(mocker: FixtureFunction) -> None:
+    # Mocking the os.makedirs and logger.debug functions
+    mocker.patch("os.makedirs")
+    mocker.patch("loguru.logger.debug")
+
+    path_to_directory = Path("path/to/dir1")
+    create_directory(path_to_directory)
+
+    # Assert that os.makedirs was called for path_to_directory
+    assert os.makedirs.call_count == 1
 
 
 def test_simple_load_json_success(mocker: FixtureFunction) -> None:
