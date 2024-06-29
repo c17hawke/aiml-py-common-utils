@@ -6,7 +6,7 @@ import joblib
 from box import ConfigBox
 from pathlib import Path
 from typing import Any, List, Union, Dict
-from aiml_py_common_utils import logger
+from aiml_py_common_utils.log_manager import logger
 
 JSON_LIKE = Union[Dict[str, 'JSON_LIKE'], List['JSON_LIKE'], int, str, float, bool, None]
 
@@ -63,20 +63,29 @@ def create_directories(path_to_directories: List[Path], verbose: bool=True) -> N
         ignore_log (bool, optional): ignore if multiple dirs is to be created. Defaults to False.
     """
     for path in path_to_directories:
-        os.makedirs(path, exist_ok=True)
-        if verbose:
-            logger.debug(f"created directory at: {path}")
+        create_directory(path_to_directory=path, verbose=verbose)
 
+def create_directory(path_to_directory: Path, verbose: bool=True) -> None:
+    """create a single directory
 
-def save_as_json(path: Path, data: JSON_LIKE) -> None:
+    Args:
+        path_to_directory (Path): path to the directory
+        verbose (bool, optional): ignore debug logs if multiple dirs is to be created. Defaults to False.
+    """
+    os.makedirs(path_to_directory, exist_ok=True)
+    if verbose:
+        logger.debug(f"created directory at: {path_to_directory}")
+
+def save_as_json(path: Path, data: JSON_LIKE, indent: int=4) -> None:
     """save json like data to json file
 
     Args:
         path (Path): path to json file
         data (JSON_LIKE): json like data to be saved in json file
+        indent (int, optional): The number of spaces for indentation in the JSON string. If not provided, it defaults to 4.
     """
     with open(path, "w") as f:
-        json.dump(data, f, indent=4)
+        json.dump(data, f, indent=indent)
 
     logger.debug(f"json file saved at: {path}")
 
@@ -111,6 +120,9 @@ def box_load_json(path: Path) -> ConfigBox:
     logger.debug(f"json file loaded succesfully from: {path}")
     return ConfigBox(content)
 
+def save_text(data: str, path: Path) -> None:
+    with open(path, "w") as f:
+        f.write(data)
 
 def stringify_json(data: Union[Dict, List[Dict]], indent: int=4) -> str:
     """
