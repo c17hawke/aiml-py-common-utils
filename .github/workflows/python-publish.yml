@@ -31,7 +31,11 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements_dev.txt
         python -m pip install build
-        export JUPYTER_PLATFORM_DIRS=1
+        if [ "${{ runner.os }}" == "Windows" ]; then
+          set JUPYTER_PLATFORM_DIRS=1
+        else
+          export JUPYTER_PLATFORM_DIRS=1
+        fi
         jupyter --paths
     - name: Lint with ruff
       run: |
