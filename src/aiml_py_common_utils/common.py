@@ -28,8 +28,9 @@ def simple_read_yaml(path_to_yaml: Path) -> Dict:
             content = yaml.safe_load(yaml_file)
             logger.debug(f"yaml file: {path_to_yaml} loaded successfully")
             return content
-    except Exception as e:
-        raise e
+    except Exception as exe:
+        logger.exception(f"yaml file: {path_to_yaml} loading failed due to: \n{exe}")
+        raise exe
 
 def box_read_yaml(path_to_yaml: Path) -> ConfigBox:
     """reads yaml file and returns
@@ -49,10 +50,12 @@ def box_read_yaml(path_to_yaml: Path) -> ConfigBox:
             content = yaml.safe_load(yaml_file)
             logger.debug(f"yaml file: {path_to_yaml} loaded successfully")
             return ConfigBox(content)
-    except BoxValueError:
+    except BoxValueError as exe:
+        logger.exception(f"yaml file: {path_to_yaml} loading failed due to \n{exe}")
         raise ValueError("yaml file is empty")
-    except Exception as e:
-        raise e
+    except Exception as exe:
+        logger.exception(f"yaml file: {path_to_yaml} loading failed due to \n{exe}")
+        raise exe
 
 
 def create_directories(path_to_directories: List[Path], verbose: bool=True) -> None:
@@ -72,7 +75,11 @@ def create_directory(path_to_directory: Path, verbose: bool=True) -> None:
         path_to_directory (Path): path to the directory
         verbose (bool, optional): ignore debug logs if multiple dirs is to be created. Defaults to False.
     """
-    os.makedirs(path_to_directory, exist_ok=True)
+    try:
+        os.makedirs(path_to_directory, exist_ok=True)
+    except Exception as exe:
+        logger.exception(f'failed to create directory at: {path_to_directory} due to: \n{exe}')
+        raise exe
     if verbose:
         logger.debug(f"created directory at: {path_to_directory}")
 
@@ -84,11 +91,14 @@ def save_as_json(path: Path, data: JSON_LIKE, indent: int=4) -> None:
         data (JSON_LIKE): json like data to be saved in json file
         indent (int, optional): The number of spaces for indentation in the JSON string. If not provided, it defaults to 4.
     """
-    with open(path, "w") as f:
-        json.dump(data, f, indent=indent)
+    try:
+        with open(path, "w") as f:
+            json.dump(data, f, indent=indent)
 
-    logger.debug(f"json file saved at: {path}")
-
+        logger.debug(f"json file saved at: {path}")
+    except Exception as exe:
+        logger.exception(f'failed to save JSON file at: {path} due to: \n{exe}')
+        raise exe
 
 def simple_load_json(path: Path) -> Dict:
     """load json files data
@@ -99,12 +109,16 @@ def simple_load_json(path: Path) -> Dict:
     Returns:
         Dict: json data as dict
     """
-    with open(path) as f:
-        content = json.load(f)
+    try:
+        with open(path) as f:
+            content = json.load(f)
 
-    logger.debug(f"json file loaded succesfully from: {path}")
-    return content
-
+        logger.debug(f"json file loaded succesfully from: {path}")
+        return content
+    except Exception as exe:
+        logger.exception(f'failed to load JSON file from: {path} due to: \n{exe}')
+        raise exe
+    
 def box_load_json(path: Path) -> ConfigBox:
     """load json files data
 
@@ -114,15 +128,37 @@ def box_load_json(path: Path) -> ConfigBox:
     Returns:
         ConfigBox: data as class attributes instead of dict
     """
-    with open(path) as f:
-        content = json.load(f)
+    try:
+        with open(path) as f:
+            content = json.load(f)
 
-    logger.debug(f"json file loaded succesfully from: {path}")
-    return ConfigBox(content)
+        logger.debug(f"json file loaded succesfully from: {path}")
+        return ConfigBox(content)
+    except Exception as exe:
+        logger.exception(f'failed to load JSON file from: {path} due to: \n{exe}')
+        raise exe
+    
+def save_text(data: str, path: Path, mode: str="w") -> None:
+    """
+    Save the given text data to a file.
 
-def save_text(data: str, path: Path) -> None:
-    with open(path, "w") as f:
-        f.write(data)
+    Args:
+        data (str): The text data to be saved.
+        path (Path): The file path where the data should be saved.
+        mode (str, optional): The file write mode (default is "w").
+
+    Returns:
+        None
+    """
+    try:
+        with open(path, mode) as f:
+            f.write(data)
+        logger.debug(f"text file saved at: {path}")
+    except Exception as exe:
+        logger.exception(f'failed to save TEXT file at: {path} due to: \n{exe}')
+        raise exe
+
+
 
 def stringify_json(data: Union[Dict, List[Dict]], indent: int=4) -> str:
     """
@@ -135,7 +171,11 @@ def stringify_json(data: Union[Dict, List[Dict]], indent: int=4) -> str:
     Returns:
         str: The input data formatted as a JSON string with the specified indentation.
     """
-    return json.dumps(obj=data, indent=indent)
+    try:
+        return json.dumps(obj=data, indent=indent)
+    except Exception as exe:
+        logger.exception(f'failed to stringify Dict or List data due to: \n{exe}')
+        raise exe
 
 
 def save_bin(data: Any, path: Path) -> None:
@@ -145,9 +185,12 @@ def save_bin(data: Any, path: Path) -> None:
         data (Any): data to be saved as binary
         path (Path): path to binary file
     """
-    joblib.dump(value=data, filename=path)
-    logger.debug(f"binary file saved at: {path}")
-
+    try:
+        joblib.dump(value=data, filename=path)
+        logger.debug(f"binary file saved at: {path}")
+    except Exception as exe:
+        logger.exception(f'failed to save binary data at: {path} due to: \n{exe}')
+        raise exe
 
 def load_bin(path: Path) -> Any:
     """load binary data
@@ -158,9 +201,14 @@ def load_bin(path: Path) -> Any:
     Returns:
         Any: object stored in the file
     """
-    data = joblib.load(path)
-    logger.debug(f"binary file loaded from: {path}")
-    return data
+    try:
+        data = joblib.load(path)
+        logger.debug(f"binary file loaded from: {path}")
+        return data
+    except Exception as exe:
+        logger.exception(f'failed to load binary data from: {path} due to: \n{exe}')
+        raise exe
+
 
 def get_size(path: Path) -> float:
     """get size in KB
@@ -171,9 +219,13 @@ def get_size(path: Path) -> float:
     Returns:
         float: size in KB
     """
-    size_in_kb = round(os.path.getsize(path)/1024)
-    logger.debug(f"size of: {path} =~ {size_in_kb} KB")
-    return size_in_kb
+    try:
+        size_in_kb = round(os.path.getsize(path)/1024)
+        logger.debug(f"size of: {path} =~ {size_in_kb} KB")
+        return size_in_kb
+    except Exception as exe:
+        logger.exception(f'failed to get size due to: \n{exe}')
+        raise exe
 
 def word_wrap(string: str, n_chars: int=72) -> str:
     """Breaks a string into lines at the next space beyond n_chars.
