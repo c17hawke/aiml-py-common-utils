@@ -7,7 +7,8 @@ from aiml_py_common_utils import (
     simple_load_json,
     box_load_json,
     stringify_json,
-    get_size
+    get_size,
+    save_text
 )
 import json
 from _pytest.fixtures import FixtureFunction
@@ -162,3 +163,24 @@ def test_get_size_success(mocker: FixtureFunction) -> None:
 
     # Assert that the result is as expected
     assert result == 2  # 2048 bytes is 2 KB
+
+def test_save_text(tmp_path):
+    # Create some test data
+    data = "Hello, world!"
+    file_path = tmp_path / "test_file.txt"
+
+    # Call the function
+    save_text(data, file_path)
+
+    # Check if the file was created and contains the correct data
+    with open(file_path, "r") as f:
+        saved_data = f.read()
+        assert saved_data == data
+
+def test_save_text_exception(tmp_path):
+    # Create an invalid file path
+    invalid_path = tmp_path / "nonexistent_folder" / "test_file.txt"
+
+    # Call the function with an invalid path
+    with pytest.raises(Exception):
+        save_text("Invalid data", invalid_path)
