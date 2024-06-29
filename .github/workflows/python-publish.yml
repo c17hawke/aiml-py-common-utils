@@ -31,7 +31,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements_dev.txt
         python -m pip install build
-        if ("${{ runner.os }}" == "windows-latest"); then
+        if [$(runner.os) == "Windows"]; then
           set JUPYTER_PLATFORM_DIRS=1
         else
           export JUPYTER_PLATFORM_DIRS=1
